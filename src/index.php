@@ -22,11 +22,11 @@
 <img alt="зона для тестирования попадания" src="areas.jpg" class="area"/>
 <form id="hitDataForm" action="/hit.php" method="post">
     <label for="xInput">x</label>
-    <input id="xInput" name="x" />
+    <input id="xInput" name="x" value="0" />
     <label for="yInput">y</label>
-    <input id="yInput" name="y" />
+    <input id="yInput" name="y" value="0" />
     <label for="radiusInput">radius</label>
-    <input id="radiusInput" name="r"/>
+    <input id="radiusInput" name="r" value="1"/>
     <button type="submit">submit</button>
 </form>
 <script src="validation.js"></script>

@@ -1,5 +1,41 @@
+<?php
+function doesItHit($x, $y, $r): bool {
+    if ($x >=0 and $y >= 0 and $x^2 + $y^2 <= ($r/2)^2) {   //round check
+        return true;
+    } elseif ($x <= 0 and $y >= 0 and $y <= 2*$x+$r) {  //triangle check
+        return true;
+    } elseif (0 <= $x and $x <= $r/2 and -$r <= $y and $y <=0) {     //rectangle check
+        return true;
+    }
 
+    return false;
+}
 
+class Hit {
+    public $x;
+    public $y;
+    public $r;
+    public $doesHit;
+
+    public function __construct($x, $y, $r, $doesHit) {
+        $this->x = $x;
+        $this->y = $y;
+        $this->r = $r;
+        $this->doesHit = $doesHit;
+    }
+}
+
+$key = "previous-hits";
+$serializedHits = $_COOKIE[$key];
+$hits = is_null($serializedHits) ?  array() : unserialize($serializedHits);
+
+$x = $_POST['x'];
+$y = $_POST['y'];
+$r = $_POST['r'];
+
+array_push($hits, new Hit($x, $y, $r, doesItHit($x, $y, $r)));
+setcookie($key, serialize($hits));
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,35 +44,6 @@
     <title>Тестируем попадание</title>
 </head>
 <body>
-<?php
-class HitData {
-    public $x;
-    public $y;
-    public $r;
-    public $hit;
-
-    public function __construct($x, $y, $r, $hit) {
-        $this->x = $x;
-        $this->y = $y;
-        $this->r = $r;
-        $this->hit = $hit;
-    }
-}
-
-$x = $_POST['x'];
-$y = $_POST['y'];
-$r = $_POST['r'];
-
-require __DIR__ . '/calculation.php';
-
-$hit = doesItHit($x, $y, $r);
-$hitData = new HitData($x, $y, $r, $hit);
-
-$hits = array(
-    $hitData,
-)
-?>
-
 <table>
 <thead>
 <tr>
@@ -46,7 +53,6 @@ $hits = array(
     <th>Попадание:</th>
 </tr>
 </thead>
-
 <tbody id="tableData"> </tbody>
     <?php foreach($hits as $hitData): ?>
         <tr>
@@ -54,7 +60,7 @@ $hits = array(
             <td><?= $hitData->y; ?></td>
             <td><?= $hitData->r; ?></td>
             <td>
-                <?php if ($hitData->hit == true): ?>
+                <?php if ($hitData->doesHit == true): ?>
                     Попадание есть
                 <?php else: ?>
                     Попадания нет
@@ -63,5 +69,6 @@ $hits = array(
         </tr>
     <?php endforeach; ?>
 </table>
+<a href="/">Попробовать ещё</a>
 </body>
 </html>
