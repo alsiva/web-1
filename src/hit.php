@@ -1,4 +1,6 @@
 <?php
+$time_start = microtime(true);
+
 function doesItHit($x, $y, $r): bool {
     if ($x >=0 and $y >= 0 and $x^2 + $y^2 <= ($r/2)^2) {   //round check
         return true;
@@ -53,7 +55,7 @@ setcookie($key, serialize($hits));
     <th>Попадание:</th>
 </tr>
 </thead>
-<tbody id="tableData"> </tbody>
+<tbody>
     <?php foreach($hits as $hitData): ?>
         <tr>
             <td><?= $hitData->x; ?></td>
@@ -68,7 +70,22 @@ setcookie($key, serialize($hits));
             </td>
         </tr>
     <?php endforeach; ?>
+</tbody>
 </table>
 <a href="/">Попробовать ещё</a>
+<p>
+    <?php
+    $date = new DateTime("now", new DateTimeZone('Europe/Moscow') );
+    echo "Текущее время: ".$date->format('Y-m-d H:i:s');
+    ?>
+</p>
+<p>
+<?php
+$time_end = microtime(true);
+$execution_time_seconds = ($time_end - $time_start);
+
+echo "Время выполнения скрипта: ".$execution_time_seconds." секунд"
+?>
+</p>
 </body>
 </html>
