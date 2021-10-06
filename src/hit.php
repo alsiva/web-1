@@ -1,6 +1,23 @@
 <?php
 $time_start = microtime(true);
 
+function validate($x, $y, $r): ?string {
+    if (!is_numeric($x)) {
+        return "x не число";
+    }
+    if (!is_numeric($y)) {
+        return "y не число";
+    }
+    if (!is_numeric($r)) {
+        return "radius не число";
+    }
+    if ($r <= 0) {
+        return "radius должен быть больше 0";
+    }
+
+    return null;
+}
+
 function doesItHit($x, $y, $r): bool {
     if ($x >=0 and $y >= 0 and $x^2 + $y^2 <= ($r/2)^2) {   //round check
         return true;
@@ -35,8 +52,11 @@ $x = $_POST['x'];
 $y = $_POST['y'];
 $r = $_POST['r'];
 
-array_push($hits, new Hit($x, $y, $r, doesItHit($x, $y, $r)));
-setcookie($key, serialize($hits));
+$invalidText = validate($x, $y, $r);
+if (is_null($invalidText)) {
+    array_push($hits, new Hit($x, $y, $r, doesItHit($x, $y, $r)));
+    setcookie($key, serialize($hits));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +92,14 @@ setcookie($key, serialize($hits));
     <?php endforeach; ?>
 </tbody>
 </table>
+<p>
+<?php
+    if (!is_null($invalidText)) {
+        echo $invalidText;
+    }
+?>
+</p>
+
 <a href="/">Попробовать ещё</a>
 <p>
     <?php
