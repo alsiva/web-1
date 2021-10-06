@@ -1,44 +1,22 @@
 let hitDataForm = document.querySelector("#hitDataForm");
-hitDataForm.addEventListener("submit", validate)
+let xInput = hitDataForm.querySelector("#xInput");
+let yInput = hitDataForm.querySelector("#yInput");
+let yIncrementButton = hitDataForm.querySelector("#yIncrementButton");
 
-function validate(event) {
-    let xAsStr = hitDataForm.querySelector("#xInput").value
-    let yAsStr = hitDataForm.querySelector("#yInput").value
-    let radiusAsString = hitDataForm.querySelector("#radiusInput").value
+yIncrementButton.addEventListener('click', () => {
+    let y = Number.parseInt(yInput.value) + 1
+    if (y > 3) {
+        y = -5;
+    }
+    yInput.value = y;
+})
 
-    let x = parseNumber(xAsStr);
-    if (x === null) {
+hitDataForm.addEventListener("submit", event => {
+    let xAsStr = xInput.value
+
+    let value = Number.parseInt(xAsStr);
+    if (isNaN(value)) {
         alert("x: " + xAsStr + " не является числом")
         event.preventDefault();
-        return;
     }
-
-    let y = parseNumber(yAsStr);
-    if (y === null) {
-        alert("y: " + yAsStr + " не является числом")
-        event.preventDefault();
-        return;
-    }
-
-    let radius = parseNumber(radiusAsString);
-    if (radiusAsString === null) {
-        alert("radius: " + radiusAsString + " не является числом")
-        event.preventDefault();
-        return;
-    }
-
-    if (radius <= 0) {
-        alert("радиус должен быть больше 0")
-        event.preventDefault();
-        return;
-    }
-}
-
-function parseNumber(str) {
-    let value = Number.parseInt(str);
-    if (isNaN(value)) {
-        return null;
-    } else {
-        return value;
-    }
-}
+})

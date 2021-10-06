@@ -21,12 +21,24 @@
 </p>
 <img alt="зона для тестирования попадания" src="areas.jpg" class="area"/>
 <form id="hitDataForm" action="/hit.php" method="post">
-    <label for="xInput">x</label>
-    <input id="xInput" name="x" value="0" />
-    <label for="yInput">y</label>
-    <input id="yInput" name="y" value="0" />
-    <label for="radiusInput">radius</label>
-    <input id="radiusInput" name="r" value="1"/>
+    <label>
+        x <input id="xInput" name="x" value="0" type="text" size="15" />
+    </label>
+    <label>
+        y <input id="yInput" readonly name="y" value="-5" size="3" />
+        <input id="yIncrementButton" value="increment" type="button" />
+    </label>
+
+    <label>
+        radius
+        <select name="r">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </label>
     <button type="submit">submit</button>
 </form>
 <script src="validation.js"></script>

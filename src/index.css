@@ -31,11 +31,16 @@ header .cursive {
 }
 
 #hitDataForm {
-    margin-top: 12px;
+    margin-top: 24px;
 }
-#hitDataForm > * {
+#hitDataForm > label {
     display: block;
+    margin-top: 12px;
 }
 #hitDataForm > input {
     margin-bottom: 4px;
+}
+
+#hitDataForm button[type=submit] {
+    margin-top: 12px;
 }
