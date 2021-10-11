@@ -20,7 +20,7 @@
     и создать HTML-страницу, которая формирует данные для отправки их на обработку этому скрипту
 </p>
 <img alt="зона для тестирования попадания" src="areas.jpg" class="area"/>
-<form id="hitDataForm" action="/hit.php" method="post">
+<form id="hitDataForm" action="hit.php" method="post">
     <label>
         x <input id="xInput" name="x" value="0" type="text" size="15" />
     </label>

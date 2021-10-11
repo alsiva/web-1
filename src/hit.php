@@ -1,7 +1,7 @@
 <?php
 $time_start = microtime(true);
 
-function validate($x, $y, $r): ?string {
+function validate($x, $y, $r) {
     if (!is_numeric($x)) {
         return "x не число";
     }
@@ -18,7 +18,7 @@ function validate($x, $y, $r): ?string {
     return null;
 }
 
-function doesItHit($x, $y, $r): bool {
+function doesItHit($x, $y, $r) {
     if ($x >=0 and $y >= 0 and $x^2 + $y^2 <= ($r/2)^2) {   //round check
         return true;
     } elseif ($x <= 0 and $y >= 0 and $y <= 2*$x+$r) {  //triangle check
@@ -100,7 +100,7 @@ if (is_null($invalidText)) {
 ?>
 </p>
 
-<a href="/">Попробовать ещё</a>
+<a href="index.php">Попробовать ещё</a>
 <p>
     <?php
     $date = new DateTime("now", new DateTimeZone('Europe/Moscow') );
