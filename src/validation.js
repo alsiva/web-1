@@ -12,11 +12,19 @@ yIncrementButton.addEventListener('click', () => {
 })
 
 hitDataForm.addEventListener("submit", event => {
-    let xAsStr = xInput.value
+    let xAsStr = xInput.value.trim()
+    let value = parseFloat(xAsStr);
 
-    let value = Number.parseInt(xAsStr);
+    let maxLength = value < 0 ? 5 : 4
+
     if (isNaN(value)) {
-        alert("x: " + xAsStr + " не является числом")
         event.preventDefault();
+        alert("x: " + xAsStr + " не является числом");
+        return
+    }
+
+    if (xAsStr.length > maxLength) {
+        event.preventDefault();
+        alert("Зачем вы уснули на клавиатуре");
     }
 })

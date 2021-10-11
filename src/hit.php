@@ -48,7 +48,7 @@ $key = "previous-hits";
 $serializedHits = $_COOKIE[$key];
 $hits = is_null($serializedHits) ?  array() : unserialize($serializedHits);
 
-$x = $_POST['x'];
+$x = trim($_POST['x']);
 $y = $_POST['y'];
 $r = $_POST['r'];
 
