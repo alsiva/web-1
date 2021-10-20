@@ -30,6 +30,10 @@ header .cursive {
     background: #c2edd9;
 }
 
+.green-box:hover  {
+    background: #89b9a5;
+}
+
 #hitDataForm {
     margin-top: 24px;
 }

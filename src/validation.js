@@ -21,4 +21,9 @@ hitDataForm.addEventListener("submit", event => {
         return
     }
 
+    if (value >= 3 || value <= -5) {
+        event.preventDefault();
+        alert("x: " + xAsStr + " не лежит в диапазоне (-5;3)")
+    }
+
 })

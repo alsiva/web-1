@@ -22,7 +22,7 @@
 <img alt="зона для тестирования попадания" src="areas.jpg" class="area"/>
 <form id="hitDataForm" action="hit.php" method="post">
     <label>
-        x <input id="xInput" name="x" value="0" type="text" size="15" maxlength="2" />
+        x <input id="xInput" name="x" value="0" type="text" size="15" maxlength="4" />
     </label>
     <label>
         y <input id="yInput" readonly name="y" value="-5" size="3" />
